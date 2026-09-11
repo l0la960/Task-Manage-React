@@ -1,0 +1,381 @@
+* {
+box-sizing: border-box;
+padding: 0;
+margin: 0;
+}
+
+body {
+background: #fffafa;
+background: linear-gradient(90deg,rgba(255, 255, 255, 1) 0%, rgba(235, 228, 228, 1) 50%, rgba(255, 247, 247, 1) 100%);
+margin: 3rem 11rem;
+font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+nav {
+display: flex;
+justify-content: space-between;
+}
+
+.nav-logo-group > h1 {
+font-weight: 600;
+font-size: 2.5rem;
+}
+
+.nav-logo-group {
+display: flex;
+align-items: center;
+gap: 0.5rem;
+}
+
+.nav-logo-group > img {
+height: 2.8rem;
+width: 2.8rem;
+}
+
+nav > button {
+font-weight: 550;
+font-size: 1.2rem;
+padding: 1rem;
+display: flex;
+align-items: center;
+gap: 1rem;
+cursor: pointer;
+background-color:black;
+color:oklch(100% 0 0);
+border-radius: 10px;
+}
+
+nav > button:hover {
+opacity: 0.85;
+}
+
+nav > button > img {
+height: 1.2rem;
+width: 1.2rem;
+}
+
+.main-content-heading-text {
+color:oklch(44.6% .03 256.802);
+font-size: 1.3rem;
+}
+
+
+.task--category--parent--container {
+display: flex;
+margin-top: 3rem;
+}
+
+.task-category-container {
+background-color: oklch(100% 0 0);
+margin-right: 2rem;
+padding: 2rem ;
+flex: 1 1 0;
+border-radius: 0.625rem;
+box-shadow: 3px 3px 12px -3px rgba(0, 0, 0, 0.25);
+}
+
+.task-category-name-quantity-group {
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+
+.task-category-name-quantity-group > h2 {
+font-weight: 500;
+}
+
+.task-category-quantity-tracker-container {
+width: 2.7rem;
+padding: 0.3em;
+border-radius: 80%;
+background-color:oklch(97% .027 264.364);
+color: oklch(44.6% .03 256.802);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.3rem;
+}
+
+.task-category-empty-state-text > p {
+padding: 4rem;
+text-align: center;
+font-size: 1.3rem;
+color: oklch(60.6% .03 256.802);
+}
+
+.task-container {
+margin: 1rem;
+border: 1px solid rgba(0, 0, 0, 0.115);
+border-radius: 0.625rem;
+padding: 1rem ;
+}
+
+.task-container-title-delete-group {
+display: flex;
+justify-content: space-between;
+}
+
+.task-container-title-delete-group > h3 {
+font-size: 1.3rem;
+font-weight: 600;
+}
+
+.task-container-title-delete-group > button{
+background-color:oklch(100% 0 0);
+border: none;
+cursor: pointer;
+margin-bottom: 1rem;
+}
+
+.task-container-title-delete-group > button:hover {
+background-color:rgba(255, 0, 0, 0.13) ;
+border-radius: 0.5rem;
+padding: 0.3rem;
+}
+
+.task-container-title-delete-group > button > img{
+width: 1.5rem;
+height: 1.5rem;
+}
+
+.task-container-date-time-btns-group {
+display: flex;
+gap: 0.5rem;
+margin: 1rem;
+}
+
+.task-container-date-time {
+background-color:black;
+color:oklch(100% 0 0);
+border-radius: 8px;
+padding: 0.5rem;
+font-size: 1.1rem;
+font-weight: 500;
+display: flex;
+align-items: center;
+gap: 0.5rem;
+}
+
+.task-container-date-time > div > img {
+height:1.2rem;
+width: 1.2rem;
+}
+
+ .task-container-btn-group {
+display: flex;
+justify-content: end;
+gap: 0.6rem;
+}
+
+ .task-container-btn-group > button, .dropbtn{
+background-color:oklch(100% 0 0) ;
+border: 1px solid rgba(0, 0, 0, 0.115);
+padding: 1rem 2rem;
+border-radius: 0.5rem;
+font-size: 1.1rem;
+font-weight: 600;
+cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color:oklch(100% 0 0) ;
+  border-radius: 0.625rem;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+
+.dropdown-content a {
+  color: black;
+  padding: 0.7rem 1rem;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content p {
+padding: 1rem;
+font-size: 1.1rem;
+font-weight: 500;
+}
+
+
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+
+.dropdown:hover .dropdown-content {display: block;}
+
+
+
+
+.form-background {
+position: fixed;
+inset: 0;
+background-color: rgba(0, 0, 0, 0.414);
+}
+
+
+.form-container {
+background-color:oklch(100% 0 0); 
+/* background: repeating-linear-gradient(45deg, #92c9b1, #92c9b1 20px, #b3e0d2 20px, #b3e0d2 40px); */
+padding: 2rem;
+margin: 6rem 20rem; 
+border-radius: 0.625rem;
+max-height: 870px;
+}
+
+.form-exit-container {
+width: 100%;
+display: flex;
+justify-content: end;
+}
+
+
+.form-exit-container > button > img {
+width: 2rem;
+height: 2rem;
+}
+
+.form-exit-btn {
+border: none;
+background-color: oklch(100% 0 0); 
+cursor: pointer;
+}
+
+.form-exit-btn:hover {
+opacity: 60%;
+}
+
+
+.form-container-heading > h2 {
+font-size:1.9rem ;
+font-weight: 500;
+}
+
+.form-container-heading > p {
+font-size: 1.1rem;
+color: oklch(60.6% .03 256.802);
+margin: 1rem 0rem;
+}
+
+
+.form-input-container {
+font-size: 1.3rem;
+font-weight: 500;
+margin-bottom: 1rem;
+}
+
+.form-input-container > label > input {
+background-color: #f3f3f5;
+width: 100%;
+border: none;
+padding: 1.2rem;
+border-radius: 0.5rem;
+margin-top: 1rem;
+font-size: 1.2rem;
+}
+
+.form-horizontal-line {
+margin-top: 2rem;
+margin-bottom: 2rem;
+opacity: 0.4;
+}
+
+
+
+.switch {
+    font-size: 17px;
+    position: relative;
+    display: inline-block;
+    width: 3.5em;
+    height: 2em;
+  }
+
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+ 
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background: oklch(70% .027 264.364);
+    border-radius: 50px;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 1.4em;
+    width: 1.4em;
+    left: 0.3em;
+    bottom: 0.3em;
+    background-color: white;
+    border-radius: 50px;
+    box-shadow: 0 0px 20px rgba(0,0,0,0.4);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .switch input:checked + .slider {
+    background:#cf7bff ;
+  }
+
+  .switch input:focus + .slider {
+    box-shadow: 0 0 1px #cf7bff  ;
+  }
+
+  .switch input:checked + .slider:before {
+    transform: translateX(1.6em);
+    width: 2em;
+    height: 2em;
+    bottom: 0;
+}
+
+.switch-text-group {
+display: flex;
+align-items: center;
+gap: 1rem;
+margin-bottom: 1rem;
+}
+
+.switch-text-group > p {
+font-size: 1.2rem;
+font-weight: 500;
+}
+
+
+.form-email-alert-state-container > p {
+color:oklch(44.6% .03 256.802) ;
+}
+
+.form-container > button {
+cursor: pointer;
+background-color:black;
+color:oklch(100% 0 0);
+border-radius: 10px;
+width: 100%;
+margin-top: 1rem;
+font-weight: 550;
+font-size: 1.2rem;
+padding: 1rem;
+cursor: pointer;
+}
+
+
+
+
+

@@ -40,14 +40,19 @@ function App() {
     setUpdateFormOpened(false)
     console.log(close)
   }
-
+   
 
   
+
+
+
+  //add to to list function 
   const addTodolist = (taskItem) => {
     if (taskItem.title.trim() === '' || taskItem.dueDate.trim() === '') {
     document.getElementById('task-title').style.outline = '5px solid oklch(70.9% 0.00008 271.152 / 0.722)'
     document.getElementById('due-date').style.outline = '5px solid oklch(70.9% 0.00008 271.152 / 0.722)'
     }
+
     else {
     setTodolist(t => [...t, taskItem])
     closeForm()
@@ -128,7 +133,7 @@ function App() {
     <>
       <Header onClick={() => openForm()} />
       <MainContent tasks={todoList} doneTasks={doneList} doingTasks={doingList} deleteDoingTodo={deleteDoingTodo} deleteItem ={deleteTodo} deleteDoneTodo={deleteDoneTodo} moveTaskDone={moveTaskDone} moveTaskDoing={moveTaskDoing} updateForm={()=> openUpdateForm()}/>
-      {isFormOpened && <CreateTaskForm onClick={() => closeForm()} addTasks={addTodolist} />}
+      {isFormOpened && <CreateTaskForm onClick={() => closeForm()} addTasks={addTodolist}/>}
       {isUpdateFormOpened && <UpdateForm closeUpdateForm={() => closeUpdateForm()} taskTitle={todoList.title}/> }
     </>
   );

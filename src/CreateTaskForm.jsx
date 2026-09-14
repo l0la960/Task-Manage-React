@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
+import { useEffect } from "react"
 import crossIcon from './assets/cross-small.png';
 import Switch from './components/SwitchButton';
 import Button from './components/Button';
 
 
-export default function CreateTaskForm ({onClick, addTasks }) {
+
+export default function CreateTaskForm ({onClick, addTasks}) {
 
 const [isEmailAlertEnabled,setEmailAlertEnabled] = useState(false)
 const enableEmailAlert = () => {
@@ -37,6 +39,34 @@ document.getElementById('form-container-id').style.scrollbarWidth = 'thin'
    setDueTime(e.target.value)
    }
 
+   const [emailAddress, setEmailAddress] = useState('')
+   const emailAddressChange = (e) => {
+   setEmailAddress(e.target.value)
+   }
+
+
+    const [alertDate,setAlertDate] = useState('')
+   const alertDateChange = (e) => {
+   setAlertDate(e.target.value)
+   }
+
+
+   const [alertTime,setAlertTime] = useState('')
+   const alertTimeChange = (e) => {
+   setAlertTime(e.target.value)
+   }
+
+   // if (isEmailAlertEnabled) {
+   // if (emailAddress.trim() === '' || alertDate.trim() === '') {
+   // document.getElementById('email-address').style.outline = '5px solid oklch(70.9% 0.00008 271.152 / 0.722)'
+   // document.getElementById('alert-date').style.outline = '5px solid oklch(70.9% 0.00008 271.152 / 0.722)'
+   // }
+   // }
+    
+
+   
+
+
 
 return (
 <>
@@ -64,15 +94,16 @@ return (
 
 {isEmailAlertEnabled &&
 <div className='form-email-alert-state-container'>
-<FormInputContainer label='Email Address*' placeholder='your@email.com' type='email'/>
-<FormInputContainer label='Alert Date*'  type='date'/>
-<FormInputContainer label='Alert Time (optional)'  type='time'/>
+<FormInputContainer id='email-address' value={emailAddress} onChange={(e) => emailAddressChange(e)} label='Email Address*' placeholder='your@email.com' type='email'/>
+<FormInputContainer id='alert-date' value={alertDate} onChange={(e) => alertDateChange(e)} label='Alert Date*'  type='date'/>
+<FormInputContainer value={alertTime} onChange={(e) => alertTimeChange(e)} label='Alert Time (optional)'  type='time'/>
 <p>If no time is specified, alert will be set for all-day.</p>
-</div>  
+</div>
 }
+
 </form>
 <Button text='Create Task' onClick={() => addTasks({title:taskTitle, description:description,dueDate: dueDate,
-dueTime: dueTime})} />
+dueTime: dueTime, emailAddress:emailAddress, alertDate:alertDate, alertTime:alertTime})} />
 </div>
 </div>
 </>

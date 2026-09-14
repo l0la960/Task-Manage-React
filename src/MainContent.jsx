@@ -4,11 +4,11 @@ import Button from './components/Button';
 import calendarIcon from './assets/calendar-day.png'
 import DropDown from './components/DropDown';
 
-export default function MainContent({tasks, doingTasks, doneTasks, deleteItem, moveTaskDone, deleteDoneTodo, deleteDoingTodo}) {
+export default function MainContent({tasks, doingTasks, doneTasks, deleteItem, moveTaskDone, moveTaskDoing, deleteDoneTodo, deleteDoingTodo, updateForm}) {
 
  
    
-const tasksTodo = tasks.map((task,index) => <div key={index} className='task-container'><TaskContainer task={task} deleteItem={deleteItem} moveTaskDone={moveTaskDone} index={index} /> </div>)
+const tasksTodo = tasks.map((task,index) => <div key={index} className='task-container'><TaskContainer updateForm={updateForm} task={task} deleteItem={deleteItem} moveTaskDone={moveTaskDone} moveTaskDoing={moveTaskDoing} index={index} /> </div>)
 
 const tasksDoing = doingTasks.map((task,index) => <div key={index} className='task-container'> <TaskContainer task={task} index={index} deleteItem={deleteDoingTodo}/> </div>)
 
@@ -20,22 +20,14 @@ let doneQuantity = tasksDone.length
 
 let doingQuantity = tasksDoing.length
 
-
-
-
-   // if (tasksTodo.length > 0) {
-   // document.getElementById("task-category-container-id-col-one").style.flex = '2 1 0'
-   // }
-
    
-
 
 return (
 <>
 <p className="main-content-heading-text">Organize your tasks by dragging them between columns</p>
 <div className="task--category--parent--container">
 <TaskCategoryContainer name='To Do' taskList={tasksTodo} Quantity={todoQuantity} id='task-category-container-id-col-one'/>
-<TaskCategoryContainer name='Doing' Quantity={doingQuantity}  id='task-category-container-id-col-two' />
+<TaskCategoryContainer name='Doing' taskList={tasksDoing} Quantity={doingQuantity}  id='task-category-container-id-col-two' />
 <TaskCategoryContainer name='Done' Quantity={doneQuantity} taskList={tasksDone} id='task-category-container-id-col-three'/>
 </div>
 </>
@@ -64,7 +56,7 @@ return (
 }
 
 
-function TaskContainer ({task,deleteItem,moveTaskDone,index}) {
+function TaskContainer ({task,deleteItem,moveTaskDone, moveTaskDoing, index, updateForm}) {
 
 return (
    <>
@@ -77,8 +69,8 @@ return (
    <div className='task-container-date-time-btns-group'>
    <div className='task-container-date-time'> <div><img src={calendarIcon}></img></div><p>Due: {task.dueDate}, {task.dueTime}</p></div>
    <div className='task-container-btn-group'>
-   <DropDown moveTaskDone={() => moveTaskDone(index)} name='Move' link1='To Do' link2='Doing' link3='Done' heading='Change Status'/>
-   <Button text='Edit Alert'/>
+   <DropDown moveTaskDone={() => moveTaskDone(index)} moveTaskDoing={() => moveTaskDoing(index)}name='Move' link1='To Do' link2='Doing' link3='Done' heading='Change Status'/>
+   <Button text='Edit Alert' onClick={updateForm}/>
    </div>
    </div>
    </>

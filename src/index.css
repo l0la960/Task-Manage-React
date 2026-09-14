@@ -217,7 +217,7 @@ font-weight: 500;
 
 
 
-.form-background {
+.form-background, .update-form-background {
 position: fixed;
 inset: 0;
 background-color: rgba(0, 0, 0, 0.414);
@@ -231,6 +231,21 @@ padding: 2rem;
 margin: 6rem 20rem; 
 border-radius: 0.625rem;
 max-height: 870px;
+}
+
+.update-form-container {
+background-color:oklch(100% 0 0); 
+padding: 2rem;
+margin: 22rem 20rem; 
+border-radius: 0.625rem;
+max-height: 870px;
+}
+
+.update-form-task-title-container {
+background-color: rgba(128, 128, 128, 0.058);
+border-radius: 0.4rem;
+width: 100%;
+padding: 0.5rem;
 }
 
 .form-exit-container {
@@ -282,6 +297,10 @@ padding: 1.2rem;
 border-radius: 0.5rem;
 margin-top: 1rem;
 font-size: 1.2rem;
+}
+
+.form-input-container > label > input:focus-visible {
+outline: 5px solid oklch(70.9% 0.00008 271.152 / 0.722);
 }
 
 .form-horizontal-line {

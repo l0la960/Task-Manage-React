@@ -53,9 +53,9 @@ return (
 <p>Add a new task with a due date and optional email alerts.</p>
 </div>
 
-<FormInputContainer autofocus= 'autofocus' label='Task Title*' placeholder='Enter task title' type='text' value={taskTitle} onChange={(e) => taskTitleChange(e)}/>
-<FormInputContainer label='Description' placeholder='Enter task description (optional)' type='text' value={description} onChange={(e) => descriptionChange(e)}/>
-<FormInputContainer label='Due Date*' type='date' value={dueDate} onChange={(e) => dueDateChange(e)}/>
+<FormInputContainer id='task-title' autofocus= 'autofocus' label='Task Title*' placeholder='Enter task title' type='text' value={taskTitle} onChange={(e) => taskTitleChange(e)}/>
+<FormInputContainer  label='Description' placeholder='Enter task description (optional)' type='text' value={description} onChange={(e) => descriptionChange(e)}/>
+<FormInputContainer id='due-date' label='Due Date*' type='date' value={dueDate} onChange={(e) => dueDateChange(e)}/>
 <FormInputContainer label='Due Time (Optional)' type='time' value={dueTime} onChange={(e) => dueTimeChange(e)}/>
 
 <hr className='form-horizontal-line'></hr>
@@ -72,7 +72,7 @@ return (
 }
 </form>
 <Button text='Create Task' onClick={() => addTasks({title:taskTitle, description:description,dueDate: dueDate,
-dueTime: dueTime, category: 'todo'})} />
+dueTime: dueTime})} />
 </div>
 </div>
 </>
@@ -81,13 +81,13 @@ dueTime: dueTime, category: 'todo'})} />
 
 
 
-function FormInputContainer ({label, placeholder, type, value, onChange, style, autofocus}) {
+function FormInputContainer ({label, placeholder, type, value, onChange, style, autofocus, id}) {
 
 return (
 <div className="form-input-container">
 <label>
 {label}<br></br>
-<input autoFocus={autofocus} value={value} type={type} placeholder={placeholder} onChange={onChange} style={style}></input>
+<input id={id} autoFocus={autofocus} value={value} type={type} placeholder={placeholder} onChange={onChange} style={style}></input>
 </label>
 </div>
 );

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Header from "./Header"
 import MainContent from "./MainContent"
 import CreateTaskForm from "./CreateTaskForm"
+import UpdateForm from './UpdateEmailAlert'
 
 
 
@@ -28,16 +29,33 @@ function App() {
   }
 
 
+    const [isUpdateFormOpened, setUpdateFormOpened] = useState(false)
 
-  const addTodolist = (taskItem) => {
-    setTodolist(t => [...t, taskItem])
-    closeForm()
+  const openUpdateForm = () => {
+    setUpdateFormOpened(true)
+    console.log(open)
   }
 
+  const closeUpdateForm = () => {
+    setUpdateFormOpened(false)
+    console.log(close)
+  }
+
+
   
- 
+  const addTodolist = (taskItem) => {
+    if (taskItem.title.trim() === '' || taskItem.dueDate.trim() === '') {
+    document.getElementById('task-title').style.outline = '5px solid oklch(70.9% 0.00008 271.152 / 0.722)'
+    document.getElementById('due-date').style.outline = '5px solid oklch(70.9% 0.00008 271.152 / 0.722)'
+    }
+    else {
+    setTodolist(t => [...t, taskItem])
+    closeForm()
+     } 
+  }
 
 
+  
   // move functions
 
   const moveTaskDone = (index) => {
@@ -47,11 +65,24 @@ function App() {
       description: todoList[index].description,
       dueDate: todoList[index].dueDate,
       dueTime: todoList[index].dueTime, 
-      category: 'done'
-    }
+    } 
     setDoneList(d => [...d, doneTodoItem])
 
   }
+
+
+  const moveTaskDoing = (index) => {
+     deleteTodo(index)
+    const doingTodoItem = {
+      name: todoList[index].title,
+      description: todoList[index].description,
+      dueDate: todoList[index].dueDate,
+      dueTime: todoList[index].dueTime, 
+      
+    }
+    setDoingtList(d => [...d, doingTodoItem])
+
+  } 
 
 
 
@@ -96,8 +127,9 @@ function App() {
   return (
     <>
       <Header onClick={() => openForm()} />
-      <MainContent tasks={todoList} doneTasks={doneList} doingTasks={doingList} deleteDoingTodo={deleteDoingTodo} deleteItem ={deleteTodo} deleteDoneTodo={deleteDoneTodo} moveTaskDone={moveTaskDone} />
+      <MainContent tasks={todoList} doneTasks={doneList} doingTasks={doingList} deleteDoingTodo={deleteDoingTodo} deleteItem ={deleteTodo} deleteDoneTodo={deleteDoneTodo} moveTaskDone={moveTaskDone} moveTaskDoing={moveTaskDoing} updateForm={()=> openUpdateForm()}/>
       {isFormOpened && <CreateTaskForm onClick={() => closeForm()} addTasks={addTodolist} />}
+      {isUpdateFormOpened && <UpdateForm closeUpdateForm={() => closeUpdateForm()} taskTitle={todoList.title}/> }
     </>
   );
 }

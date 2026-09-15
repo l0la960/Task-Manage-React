@@ -6,9 +6,6 @@ import Button from "./components/Button";
 
 export default function CreateTaskForm({ onClick, addTasks, isEmailAlertEnabled, setEmailAlertEnabled }) {
   
-
-  // Const [isEmailAlertEnabled, setEmailAlertEnabled] = useState(false);
-  
   const enableEmailAlert = () => {
     setEmailAlertEnabled(!isEmailAlertEnabled);
   };
@@ -177,14 +174,6 @@ function EmailInputContainer({
   alertDateChange,
   addTasks,
 }) {
-  // useEffect(() => {
-  //   if (emailAddress.trim() === "" || alertDate.trim() === "") {
-  //     document.getElementById("email-address").style.outline =
-  //       "5px solid oklch(70.9% 0.00008 271.152 / 0.722)";
-  //     document.getElementById("alert-date").style.outline =
-  //       "5px solid oklch(70.9% 0.00008 271.152 / 0.722)";
-  //   }
-  // });
 
   return (
     <div className="form-email-alert-state-container">

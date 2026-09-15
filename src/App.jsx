@@ -7,6 +7,7 @@ import UpdateForm from "./UpdateEmailForm";
 function App() {
   const [isEmailAlertEnabled, setEmailAlertEnabled] = useState(false);
 
+
   // todo categories states
   const [todoList, setTodolist] = useState([]);
   const [doingList, setDoingtList] = useState([]);
@@ -22,6 +23,7 @@ function App() {
 
   const closeForm = () => {
     setFormOpened(false);
+    setEmailAlertEnabled(false)
     console.log(close);
   };
 

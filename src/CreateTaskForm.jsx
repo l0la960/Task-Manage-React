@@ -6,9 +6,12 @@ import Button from "./components/Button";
 
 export default function CreateTaskForm({ onClick, addTasks, isEmailAlertEnabled, setEmailAlertEnabled }) {
   
+
+
   const enableEmailAlert = () => {
-    setEmailAlertEnabled(!isEmailAlertEnabled);
+  setEmailAlertEnabled(!isEmailAlertEnabled)
   };
+ 
 
 
 
@@ -102,6 +105,7 @@ export default function CreateTaskForm({ onClick, addTasks, isEmailAlertEnabled,
 
             <hr className="form-horizontal-line"></hr>
 
+            
             <Switch onClick={() => enableEmailAlert()} />
 
             {isEmailAlertEnabled && (
@@ -172,7 +176,6 @@ function EmailInputContainer({
   emailAddressChange,
   alertTimeChange,
   alertDateChange,
-  addTasks,
 }) {
 
   return (

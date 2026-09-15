@@ -39,12 +39,13 @@ function App() {
 
   //add to to list function and form validation on the button
 
-  const addTodolist = (taskItem) => {
     function isEmail(email) {
     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-      email,
+    email,
     );
   }
+
+  const addTodolist = (taskItem) => {
     let title = taskItem.title.trim();
     let dueDate = taskItem.dueDate.trim();
     let email = taskItem.emailAddress.trim();

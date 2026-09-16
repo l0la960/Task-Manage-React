@@ -1,5 +1,5 @@
 
-export default function Switch ({onClick}) {
+export default function Switch ({onClick, sideText}) {
 
 return (
    <div className="switch-text-group">
@@ -9,7 +9,7 @@ return (
         <span className="slider" onClick={onClick} />
       </label>
 </div>
-      <p>Enable Email Alert</p>
+      <p>{sideText}</p>
       </div>
 );
 }

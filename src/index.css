@@ -245,7 +245,34 @@ max-height: 870px;
 background-color: rgba(128, 128, 128, 0.058);
 border-radius: 0.4rem;
 width: 100%;
-padding: 0.5rem;
+padding: 0.7rem;
+margin-bottom: 1rem;
+}
+
+.update-form-task-title-container > h3 {
+font-weight: 400;
+color: oklch(60.6% .03 256.802);
+}
+
+.update-form-task-title-container > p{
+font-weight: 400;
+font-size: 1.2rem;
+}
+
+.update-form-email-alert-switch-group > div > h3 {
+font-weight: 500;
+}
+
+.update-form-email-alert-switch-group > div > p {
+color: oklch(60.6% .03 256.802);
+font-size: 1.3rem;
+}
+
+.update-form-email-alert-switch-group {
+margin-bottom: 1rem;
+display: flex;
+align-items: center;
+justify-content: space-between;
 }
 
 .form-exit-container {

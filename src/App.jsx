@@ -27,17 +27,6 @@ function App() {
     console.log(close);
   };
 
-  const [isUpdateFormOpened, setUpdateFormOpened] = useState(false);
-
-  const openUpdateForm = () => {
-    setUpdateFormOpened(true);
-    console.log(open);
-  };
-
-  const closeUpdateForm = () => {
-    setUpdateFormOpened(false);
-    console.log(close);
-  };
 
   //add to to list function and form validation on the button
 
@@ -154,7 +143,6 @@ function App() {
         deleteDoneTodo={deleteDoneTodo}
         moveTaskDone={moveTaskDone}
         moveTaskDoing={moveTaskDoing}
-        updateForm={() => openUpdateForm()}
       />
       {isFormOpened && (
         <CreateTaskForm
@@ -162,12 +150,6 @@ function App() {
           addTasks={addTodolist}
           isEmailAlertEnabled={isEmailAlertEnabled}
           setEmailAlertEnabled={setEmailAlertEnabled}
-        />
-      )}
-      {isUpdateFormOpened && (
-        <UpdateForm
-          closeUpdateForm={() => closeUpdateForm()}
-          taskTitle={todoList.title}
         />
       )}
     </>

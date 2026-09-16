@@ -106,7 +106,7 @@ export default function CreateTaskForm({ onClick, addTasks, isEmailAlertEnabled,
             <hr className="form-horizontal-line"></hr>
 
             
-            <Switch onClick={() => enableEmailAlert()} />
+            <Switch onClick={() => enableEmailAlert() } sideText='Enable Email Alert'/>
 
             {isEmailAlertEnabled && (
               <EmailInputContainer
@@ -205,3 +205,6 @@ function EmailInputContainer({
     </div>
   );
 }
+
+
+export {EmailInputContainer}

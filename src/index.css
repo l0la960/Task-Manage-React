@@ -45,6 +45,9 @@ color:oklch(100% 0 0);
 border-radius: 10px;
 }
 
+
+
+
 nav > button:hover {
 opacity: 0.85;
 }
@@ -236,7 +239,7 @@ max-height: 870px;
 .update-form-container {
 background-color:oklch(100% 0 0); 
 padding: 2rem;
-margin: 22rem 20rem; 
+margin: 10rem 20rem; 
 border-radius: 0.625rem;
 max-height: 870px;
 }
@@ -273,6 +276,23 @@ margin-bottom: 1rem;
 display: flex;
 align-items: center;
 justify-content: space-between;
+}
+
+.update-form-save-btn-container {
+margin-top: 1rem;
+width: 100%;
+display: flex;
+justify-content: end;
+}
+
+.update-form-save-btn-container button {
+font-weight: 550;
+font-size: 1.2rem;
+padding: 1rem;
+cursor: pointer;
+background-color:black;
+color:oklch(100% 0 0);
+border-radius: 10px;
 }
 
 .form-exit-container {

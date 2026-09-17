@@ -2,16 +2,23 @@ import React, { useState } from "react";
 import Header from "./Header";
 import MainContent from "./MainContent";
 import CreateTaskForm from "./CreateTaskForm";
-import UpdateForm from "./UpdateEmailForm";
+import Alert from "./components/AlertBox";
+import alertCheck from './assets/check-circle.png'
+import alertError from './assets/exclamation.png'
+
+/**
+ * when you create a todo item you are passing it an id -> length of todos array
+ * each todo item now will have a status -> todo -> doing -> done
+ * you are going to have one list
+ * 
+ */
+
 
 function App() {
   const [isEmailAlertEnabled, setEmailAlertEnabled] = useState(false);
 
-
   // todo categories states
   const [todoList, setTodolist] = useState([]);
-  const [doingList, setDoingtList] = useState([]);
-  const [doneList, setDoneList] = useState([]);
 
   // form states open and close
   const [isFormOpened, setFormOpened] = useState(false);
@@ -23,16 +30,15 @@ function App() {
 
   const closeForm = () => {
     setFormOpened(false);
-    setEmailAlertEnabled(false)
+    setEmailAlertEnabled(false);
     console.log(close);
   };
 
-
   //add to to list function and form validation on the button
 
-    function isEmail(email) {
+  function isEmail(email) {
     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-    email,
+      email,
     );
   }
 
@@ -50,6 +56,8 @@ function App() {
     } else if (!isEmailAlertEnabled && (title !== "" || dueDate !== "")) {
       setTodolist((t) => [...t, taskItem]);
       closeForm();
+      showAlert();
+      hideAlert();
     } else if (
       isEmailAlertEnabled &&
       (email === "" || alertDate === "" || title === "" || dueDate === "")
@@ -62,96 +70,76 @@ function App() {
         "5px solid oklch(70.9% 0.00008 271.152 / 0.722)";
       document.getElementById("due-date").style.outline =
         "5px solid oklch(70.9% 0.00008 271.152 / 0.722)";
-    } 
-    else if (isEmailAlertEnabled && !isEmail(email)) {
-    console.log('invalid email')
-    }
-    else {
+    } else if (isEmailAlertEnabled && !isEmail(email)) {
+      // document.getElementById('alert-box-id').style.backgroundColor = 'red'
+      // document.getElementById('alert-box-message-container').innerHTML = 'Invalid Email'
+      // showAlert()
+      // hideAlert()
+      console.log('invalid email')
+    } else {
       setTodolist((t) => [...t, taskItem]);
       closeForm();
+      showAlert();
+      hideAlert();
     }
   };
 
-  // move functions
+  // move function
 
-  const moveTaskDone = (index) => {
-    deleteTodo(index);
-    const doneTodoItem = {
-      name: todoList[index].title,
-      description: todoList[index].description,
-      dueDate: todoList[index].dueDate,
-      dueTime: todoList[index].dueTime,
-    };
-    setDoneList((d) => [...d, doneTodoItem]);
-  };
+    const moveTask = (id, status) => {
+    const currentTask = todoList.find((task) => task.id === id)
+    const updatedCurrentTask = {...currentTask, status:status}
 
-  const moveTaskDoing = (index) => {
-    deleteTodo(index);
-    const doingTodoItem = {
-      name: todoList[index].title,
-      description: todoList[index].description,
-      dueDate: todoList[index].dueDate,
-      dueTime: todoList[index].dueTime,
-    };
-    setDoingtList((d) => [...d, doingTodoItem]);
-  };
+    const updatedTaskLists = todoList.map((todo) => {
+      if(todo.id === id) return updatedCurrentTask
+      else return todo
+    })
 
-  // Quantity decrement states for doing done todo
-
-  const [todoQuantity, setTodoQuantity] = useState(todoList.length);
-  const [doneQuantity, setDoneQuantity] = useState(doneList.length);
-  const [doingQuantity, setDoingQuantity] = useState(doingList.length);
-
-  const decrementTodoQuantity = () => {
-    setTodoQuantity(todoList.length - 1);
-  };
-
-  const decrementDoneQuantity = () => {
-    setDoneQuantity(doneList.length - 1);
-  };
-
-  const decrementDoingQuantity = () => {
-    setDoingQuantity(doingList.length - 1);
-  };
+    setTodolist(updatedTaskLists)
+  }
 
   // delete functions for each category
 
-  const deleteTodo = (index) => {
-    setTodolist(todoList.filter((_, i) => i !== index));
-    decrementTodoQuantity();
+  const deleteTodo = (id) => {
+    setTodolist(todoList.filter((todo) => todo.id !== id));
   };
 
-  const deleteDoneTodo = (index) => {
-    setDoneList(doneList.filter((_, i) => i !== index));
-    decrementDoneQuantity();
-  };
+  // Display and hide alert
 
-  const deleteDoingTodo = (index) => {
-    setDoingtList(doingList.filter((_, i) => i !== index));
-    decrementDoingQuantity();
-  };
+  const showAlert = () => {
+     console.log('show')
+  document.getElementById('alert-box-container-id').style.display = 'block'
+  }
+
+  const hideAlert = () => {
+    console.log('hide')
+    setTimeout(()=> {
+    document.getElementById('alert-box-container-id').style.display = 'none'
+    },2000)
+  }
+
 
   return (
     <>
       <Header onClick={() => openForm()} />
       <MainContent
         tasks={todoList}
-        doneTasks={doneList}
-        doingTasks={doingList}
-        deleteDoingTodo={deleteDoingTodo}
         deleteItem={deleteTodo}
-        deleteDoneTodo={deleteDoneTodo}
-        moveTaskDone={moveTaskDone}
-        moveTaskDoing={moveTaskDoing}
+        moveTask={moveTask}
+        showAlert = {showAlert}
+        hideAlert = {hideAlert}
+        isEmail = {isEmail}
       />
       {isFormOpened && (
         <CreateTaskForm
           onClick={() => closeForm()}
+          todoListItemsCount={todoList.length || 0}
           addTasks={addTodolist}
           isEmailAlertEnabled={isEmailAlertEnabled}
           setEmailAlertEnabled={setEmailAlertEnabled}
         />
-      )}
+      )}  
+      <Alert icon={alertCheck} message='Task Created Successfully.'/>
     </>
   );
 }

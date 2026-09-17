@@ -7,55 +7,53 @@ import DropDown from "./components/DropDown";
 
 export default function MainContent({
   tasks,
-  doingTasks,
-  doneTasks,
   deleteItem,
-  moveTaskDone,
-  moveTaskDoing,
-  deleteDoneTodo,
-  deleteDoingTodo,
+  moveTask,
+  showAlert,
+  hideAlert,
+  isEmail,
 }) {
-  
-
-  const tasksTodo = tasks.map((task, index) => (
-    <div key={index} className="task-container">
+  const tasksTodo = tasks.filter((task) => task.status === 'todo').map((task) => (
+    <div key={task.id} className="task-container">
       <TaskContainer
         task={task}
         deleteItem={deleteItem}
-        moveTaskDone={moveTaskDone}
-        moveTaskDoing={moveTaskDoing}
-        index={index}
+        moveTask={moveTask}
+        index={task.id}
+        showAlert = {showAlert}
+        hideAlert = {hideAlert}
+        isEmail = {isEmail}
       />{" "}
     </div>
   ));
 
-  const tasksDoing = doingTasks.map((task, index) => (
-    <div key={index} className="task-container">
-      {" "}
+  const tasksDoing = tasks.filter((task) => task.status === 'doing').map((task) => (
+    <div key={task.id} className="task-container">
       <TaskContainer
         task={task}
-        index={index}
-        deleteItem={deleteDoingTodo}
-      />{" "}
+        index={task.id}
+        moveTask={moveTask}
+        deleteItem={deleteItem}
+      />
     </div>
   ));
 
-  const tasksDone = doneTasks.map((task, index) => (
-    <div key={index} className="task-container">
-      {" "}
+  const tasksDone = tasks.filter((task) => task.status === 'done').map((task) =>  (
+    <div key={task.id} className="task-container">
       <TaskContainer
         task={task}
-        index={index}
-        deleteItem={deleteDoneTodo}
-      />{" "}
+        index={task.id}
+        moveTask={moveTask}
+        deleteItem={deleteItem}
+      />
     </div>
   ));
 
   let todoQuantity = tasksTodo.length;
 
-  let doneQuantity = tasksDone.length;
-
   let doingQuantity = tasksDoing.length;
+
+  let doneQuantity = tasksDone.length;
 
   return (
     <>
@@ -82,7 +80,6 @@ export default function MainContent({
           id="task-category-container-id-col-three"
         />
       </div>
- 
     </>
   );
 }
@@ -98,8 +95,7 @@ function TaskCategoryContainer({ name, taskList, Quantity, id }) {
           </div>
         </div>
         <div className="task-category-empty-state-text">
-          {/* <p>No tasks yet</p> */}
-          {taskList}
+          {taskList.length === 0 ? <p>No tasks yet</p> :  <div>{taskList}</div>}        
         </div>
       </div>
     </>
@@ -109,14 +105,15 @@ function TaskCategoryContainer({ name, taskList, Quantity, id }) {
 function TaskContainer({
   task,
   deleteItem,
-  moveTaskDone,
-  moveTaskDoing,
-  index,
+  moveTask,
+  index, // we are passing id here
+  showAlert,
+  hideAlert,
+  isEmail,
 }) {
+  const [isEmailAlertEnabled, setEmailAlertEnabled] = useState(false);
 
-   const [isEmailAlertEnabled, setEmailAlertEnabled] = useState(false);
-
-   const [isUpdateFormOpened, setUpdateFormOpened] = useState(false);
+  const [isUpdateFormOpened, setUpdateFormOpened] = useState(false);
 
   const openUpdateForm = () => {
     setUpdateFormOpened(true);
@@ -125,7 +122,7 @@ function TaskContainer({
 
   const closeUpdateForm = () => {
     setUpdateFormOpened(false);
-    setEmailAlertEnabled(false)
+    setEmailAlertEnabled(false);
     console.log(close);
   };
   return (
@@ -152,27 +149,29 @@ function TaskContainer({
         </div>
         <div className="task-container-btn-group">
           <DropDown
-            moveTaskDone={() => moveTaskDone(index)}
-            moveTaskDoing={() => moveTaskDoing(index)}
+            index={index}
+            moveTask={moveTask}
             name="Move"
             link1="To Do"
             link2="Doing"
             link3="Done"
             heading="Change Status"
           />
-          <Button text="Edit Alert" onClick={() =>openUpdateForm()} />
+          <Button text="Edit Alert" onClick={() => openUpdateForm()} />
         </div>
       </div>
-           {
-      isUpdateFormOpened &&
-      <UpdateForm closeUpdateForm={() => closeUpdateForm() }
-      taskTitle={task.title}
-      isEmailAlertEnabled={isEmailAlertEnabled}
-      setEmailAlertEnabled={setEmailAlertEnabled}
-      />
-      }
+      {isUpdateFormOpened && (
+        <UpdateForm
+          closeUpdateForm={() => closeUpdateForm()}
+          task={task}
+          taskTitle={task.title}
+          isEmailAlertEnabled={isEmailAlertEnabled}
+          setEmailAlertEnabled={setEmailAlertEnabled}
+          showAlert = {showAlert}
+          hideAlert = {hideAlert}
+          isEmail = {isEmail}
+        />
+      )}
     </>
   );
 }
-
-

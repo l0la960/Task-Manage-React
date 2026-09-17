@@ -2,18 +2,50 @@ import crossIcon from "./assets/cross-small.png";
 import Switch from "./components/SwitchButton";
 import { EmailInputContainer } from "./CreateTaskForm";
 import Button from "./components/Button";
+import Alert from "./components/AlertBox";
+import alertCheck from './assets/check-circle.png'
 
 export default function UpdateForm({
+  task,
   closeUpdateForm,
   taskTitle,
   isEmailAlertEnabled,
   setEmailAlertEnabled,
+  showAlert, 
+  hideAlert,
+  isEmail, 
 }) {
   const enableEmailAlert = () => {
     setEmailAlertEnabled(!isEmailAlertEnabled);
   };
 
+  
+  const saveChanges = () => {
+    let email = task.emailAddress.trim();
+    let alertDate = task.alertDate.trim();
+  if (
+      isEmailAlertEnabled &&
+      (email === "" || alertDate === "" )
+    ) {
+      document.getElementById("email-address").style.outline =
+        "5px solid oklch(70.9% 0.00008 271.152 / 0.722)";
+      document.getElementById("alert-date").style.outline =
+        "5px solid oklch(70.9% 0.00008 271.152 / 0.722)";
+  }
+  // else if (isEmailAlertEnabled && !isEmail(email)) {
+  // console.log('invalid')
+  // }
+  else {
+  closeUpdateForm()
+  showAlert()
+  hideAlert()
+  }
+  }
+
+  
+
   return (
+    <>
     <div className="update-form-background">
       <div className="update-form-container" id="form-container-id">
         <div className="form-exit-container">
@@ -40,9 +72,11 @@ export default function UpdateForm({
         </div>
         {isEmailAlertEnabled && <EmailInputContainer />}
         <div className="update-form-save-btn-container">
-          <Button text="Save Changes" />
+          <Button text="Save Changes" onClick={() => saveChanges()} />
         </div>
       </div>
     </div>
+    <Alert icon={alertCheck} message='Task updated successfully.'/>
+    </>
   );
 }

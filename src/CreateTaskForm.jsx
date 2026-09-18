@@ -4,16 +4,16 @@ import crossIcon from "./assets/cross-small.png";
 import Switch from "./components/SwitchButton";
 import Button from "./components/Button";
 
-export default function CreateTaskForm({ onClick, addTasks, todoListItemsCount, isEmailAlertEnabled, setEmailAlertEnabled }) {
-  
-
-
+export default function CreateTaskForm({
+  onClick,
+  addTasks,
+  todoListItemsCount,
+  isEmailAlertEnabled,
+  setEmailAlertEnabled,
+}) {
   const enableEmailAlert = () => {
-  setEmailAlertEnabled(!isEmailAlertEnabled)
+    setEmailAlertEnabled(!isEmailAlertEnabled);
   };
- 
-
-
 
   const [taskTitle, setTaskTitle] = useState("");
   const taskTitleChange = (e) => {
@@ -51,12 +51,12 @@ export default function CreateTaskForm({ onClick, addTasks, todoListItemsCount, 
   };
 
   useEffect(() => {
-     if (isEmailAlertEnabled) {
-    document.getElementById("form-container-id").style.overflowY = "scroll";
-    document.getElementById("form-container-id").style.scrollbarColor = "";
-    document.getElementById("form-container-id").style.scrollbarWidth = "thin";
-  }
-  })
+    if (isEmailAlertEnabled) {
+      document.getElementById("form-container-id").style.overflowY = "scroll";
+      document.getElementById("form-container-id").style.scrollbarColor = "";
+      document.getElementById("form-container-id").style.scrollbarWidth = "thin";
+    }
+  }, []);
 
   return (
     <>
@@ -105,8 +105,10 @@ export default function CreateTaskForm({ onClick, addTasks, todoListItemsCount, 
 
             <hr className="form-horizontal-line"></hr>
 
-            
-            <Switch onClick={() => enableEmailAlert() } sideText='Enable Email Alert'/>
+            <Switch
+              onClick={() => enableEmailAlert()}
+              sideText="Enable Email Alert"
+            />
 
             {isEmailAlertEnabled && (
               <EmailInputContainer
@@ -129,11 +131,11 @@ export default function CreateTaskForm({ onClick, addTasks, todoListItemsCount, 
                 description: description,
                 dueDate: dueDate,
                 dueTime: dueTime,
-                isEmailAlertEnabled:isEmailAlertEnabled,
+                isEmailAlertEnabled: isEmailAlertEnabled,
                 emailAddress: emailAddress,
                 alertDate: alertDate,
                 alertTime: alertTime,
-                status: 'todo'
+                status: "todo",
               })
             }
           />
@@ -180,7 +182,6 @@ function EmailInputContainer({
   alertTimeChange,
   alertDateChange,
 }) {
-
   return (
     <div className="form-email-alert-state-container">
       <FormInputContainer
@@ -209,5 +210,4 @@ function EmailInputContainer({
   );
 }
 
-
-export {EmailInputContainer}
+export { EmailInputContainer };

@@ -1,27 +1,25 @@
 import { useState } from "react";
-import UpdateForm from "./UpdateEmailForm";
-import trashIcon from "./assets/trash.png";
-import Button from "./components/Button";
-import calendarIcon from "./assets/calendar-day.png";
-import DropDown from "./components/DropDown";
+import TaskContainer from "./TaskContainer";
 
 export default function MainContent({
   tasks,
+  isEmailAlertEnabled,
+  setEmailAlertEnabled,
   deleteItem,
   moveTask,
-  showAlert,
-  hideAlert,
+  // Alert,
   isEmail,
 }) {
   const tasksTodo = tasks.filter((task) => task.status === 'todo').map((task) => (
     <div key={task.id} className="task-container">
       <TaskContainer
+        isEmailAlertEnabled={isEmailAlertEnabled}
+        setEmailAlertEnabled={setEmailAlertEnabled}
         task={task}
         deleteItem={deleteItem}
         moveTask={moveTask}
         index={task.id}
-        showAlert = {showAlert}
-        hideAlert = {hideAlert}
+        // Alert = {Alert}
         isEmail = {isEmail}
       />{" "}
     </div>
@@ -102,76 +100,3 @@ function TaskCategoryContainer({ name, taskList, Quantity, id }) {
   );
 }
 
-function TaskContainer({
-  task,
-  deleteItem,
-  moveTask,
-  index, // we are passing id here
-  showAlert,
-  hideAlert,
-  isEmail,
-}) {
-  const [isEmailAlertEnabled, setEmailAlertEnabled] = useState(false);
-
-  const [isUpdateFormOpened, setUpdateFormOpened] = useState(false);
-
-  const openUpdateForm = () => {
-    setUpdateFormOpened(true);
-    console.log(open);
-  };
-
-  const closeUpdateForm = () => {
-    setUpdateFormOpened(false);
-    setEmailAlertEnabled(false);
-    console.log(close);
-  };
-  return (
-    <>
-      <div className="task-container-title-delete-group">
-        <h3>{task.title}</h3>
-        <Button
-          className="task-container-trash-icon"
-          icon={trashIcon}
-          onClick={() => deleteItem(index)}
-        />
-      </div>
-      <div className="task-container-description">{task.description}</div>
-
-      <div className="task-container-date-time-btns-group">
-        <div className="task-container-date-time">
-          {" "}
-          <div>
-            <img src={calendarIcon}></img>
-          </div>
-          <p>
-            Due: {task.dueDate}, {task.dueTime}
-          </p>
-        </div>
-        <div className="task-container-btn-group">
-          <DropDown
-            index={index}
-            moveTask={moveTask}
-            name="Move"
-            link1="To Do"
-            link2="Doing"
-            link3="Done"
-            heading="Change Status"
-          />
-          <Button text="Edit Alert" onClick={() => openUpdateForm()} />
-        </div>
-      </div>
-      {isUpdateFormOpened && (
-        <UpdateForm
-          closeUpdateForm={() => closeUpdateForm()}
-          task={task}
-          taskTitle={task.title}
-          isEmailAlertEnabled={isEmailAlertEnabled}
-          setEmailAlertEnabled={setEmailAlertEnabled}
-          showAlert = {showAlert}
-          hideAlert = {hideAlert}
-          isEmail = {isEmail}
-        />
-      )}
-    </>
-  );
-}

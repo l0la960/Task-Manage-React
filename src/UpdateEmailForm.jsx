@@ -11,8 +11,7 @@ export default function UpdateForm({
   taskTitle,
   isEmailAlertEnabled,
   setEmailAlertEnabled,
-  showAlert, 
-  hideAlert,
+  // Alert, 
   isEmail, 
 }) {
   const enableEmailAlert = () => {
@@ -28,17 +27,16 @@ export default function UpdateForm({
       (email === "" || alertDate === "" )
     ) {
       document.getElementById("email-address").style.outline =
-        "5px solid oklch(70.9% 0.00008 271.152 / 0.722)";
+        "0.4rem solid oklch(70.9% 0.00008 271.152 / 0.722)";
       document.getElementById("alert-date").style.outline =
-        "5px solid oklch(70.9% 0.00008 271.152 / 0.722)";
+        "0.4rem solid oklch(70.9% 0.00008 271.152 / 0.722)";
   }
   // else if (isEmailAlertEnabled && !isEmail(email)) {
   // console.log('invalid')
   // }
   else {
   closeUpdateForm()
-  showAlert()
-  hideAlert()
+  // Alert()
   }
   }
 

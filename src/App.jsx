@@ -3,15 +3,11 @@ import Header from "./Header";
 import MainContent from "./MainContent";
 import CreateTaskForm from "./CreateTaskForm";
 import Alert from "./components/AlertBox";
+import alertCheck from './assets/check-circle.png'
 
 
 
-/**
- * when you create a todo item you are passing it an id -> length of todos array
- * each todo item now will have a status -> todo -> doing -> done
- * you are going to have one list
- *
- */
+
 
 function App() {
   const [isEmailAlertEnabled, setEmailAlertEnabled] = useState(false);
@@ -62,7 +58,6 @@ function App() {
       closeForm();
       updateAlert('#509AF8' , 'Task created Successfully')
       showAlertDialogue();
-       console.log(taskItem)
     } else if (
       isEmailAlertEnabled &&
       (email === "" || alertDate === "" || title === "" || dueDate === "")
@@ -79,7 +74,7 @@ function App() {
       closeForm();
       updateAlert('#509AF8' , 'Task created Successfully')
       showAlertDialogue()
-      console.log(taskItem)
+
     }
   };
 

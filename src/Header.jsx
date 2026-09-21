@@ -6,7 +6,7 @@ export default function Header({ onClick }) {
   return (
     <nav>
       <div className="nav-logo-group">
-        <img src={checkBox}></img>
+        <img src={checkBox} alt="logo"></img>
         <h1>Task Manager</h1>
       </div>
       <Button text="Add Task" icon={plusIcon} onClick={onClick} />

@@ -3,7 +3,6 @@ import Switch from "./components/SwitchButton";
 import { EmailInputContainer } from "./CreateTaskForm";
 import Button from "./components/Button";
 import Alert from "./components/AlertBox";
-import alertCheck from './assets/check-circle.png'
 
 export default function UpdateForm({
   task,
@@ -76,7 +75,6 @@ export default function UpdateForm({
         </div>
       </div>
     </div>
-    <Alert icon={alertCheck} message='Task updated successfully.'/>
     </>
   );
 }

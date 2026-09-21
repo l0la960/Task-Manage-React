@@ -3,10 +3,9 @@ import {format} from "date-fns";
 import { eo } from "date-fns/locale";
 import Button from './components/Button';
 import DropDown from "./components/DropDown";
-import calendarIcon from "./assets/calendar-day.png";
+import calendarIcon from "./assets/calendar.png";
 import trashIcon from "./assets/trash.png";
 import UpdateForm from "./UpdateEmailForm";
-import { endOfMonth } from 'date-fns';
 
 
 export default function TaskContainer({
@@ -14,7 +13,6 @@ export default function TaskContainer({
   deleteItem,
   moveTask,
   index, 
-  // we are passing id here
   showAlertDialogue,
   updateAlert,
   isEmailAlertEnabled,
@@ -54,7 +52,7 @@ const dueDateString = format(task.dueDate, 'do MMMM yyyy')
       <div className="task-container-date-time-btns-group">
         <div className="task-container-date-time">
           <div>
-            {/* <img src={calendarIcon}></img> */}
+            <img src={calendarIcon}></img>
           </div>
         Due:{task.dueTime === '' ? <p>{dueDateString}</p> : <p>{dueDateString}, {task.dueTime}</p>} 
         </div>

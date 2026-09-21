@@ -1,4 +1,4 @@
-export default function Alert ({icon, ref}) {
+export default function Alert ({ icon,ref}) {
 
 const styles = {
 display: 'flex',
@@ -21,8 +21,8 @@ borderRadius: '0.5rem'
 return (
 <div className="alert-box-container" id='alert-box-container-id' ref={ref}>
 <div className="alert-box"  id='alert-box-id' style={styles}>
-<div className="alert-box-icon-container"><img className='icon' src={icon}></img></div>
-<div className="alert-box-message-container" style={textStyles}></div>
+<div className="alert-box-icon-container"><img className='icon' ></img></div>
+<div className="alert-box-message-container" style={textStyles}> hi </div>
 </div>
 </div>
 );

@@ -64,7 +64,7 @@ export default function CreateTaskForm({
         <div className="form-container" id="form-container-id">
           <div className="form-exit-container">
             <button className="form-exit-btn" onClick={onClick}>
-              <img src={crossIcon}></img>
+              <img src={crossIcon} alt="exit button"></img>
             </button>
           </div>
           <form>

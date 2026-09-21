@@ -3,8 +3,6 @@ import Header from "./Header";
 import MainContent from "./MainContent";
 import CreateTaskForm from "./CreateTaskForm";
 import Alert from "./components/AlertBox";
-import alertCheck from "./assets/check-circle.png";
-import alertError from "./assets/exclamation.png";
 
 
 
@@ -41,7 +39,7 @@ function App() {
     );
   }
 
-  function updateAlert (color, message) {
+  function updateAlert (color, message, icon) {
   const firstChild = alertRef.current.firstElementChild
   if(firstChild) {
   firstChild.style.backgroundColor = color
@@ -93,7 +91,6 @@ function App() {
       if (todo.id === id) return updatedCurrentTask;
       else return todo;
     });
-
     setTodolist(updatedTaskLists);
   };
 
@@ -116,13 +113,6 @@ function App() {
     }, 2000);
   };
 
-
-  // const updateAlertState = () => {
-  //  const child = alertRef.current.querySeletor('.icon')
-  // if(child) {
-  // child.value = {alertCheck}
-  // }
-  // }
 
  
   
@@ -149,7 +139,6 @@ function App() {
         />
       )}
       <Alert
-        icon={alertCheck}
         ref={alertRef}
       />
     </>

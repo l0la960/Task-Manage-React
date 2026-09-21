@@ -255,14 +255,15 @@ cursor: pointer;
 }
 
 
-.dropdown-content a {
+.dropdown-content p {
   color: black;
   padding: 0.7rem 1rem;
   text-decoration: none;
   display: block;
+  cursor: pointer;
 }
 
-.dropdown-content p {
+.dropdown-content h3 {
 padding: 1rem;
 font-size: 1.1rem;
 font-weight: 500;
@@ -270,7 +271,7 @@ font-weight: 500;
 
 
 
-.dropdown-content a:hover {background-color: #ddd;}
+.dropdown-content p:hover {background-color: #ddd;}
 
 
 .dropdown:hover .dropdown-content {display: block;}

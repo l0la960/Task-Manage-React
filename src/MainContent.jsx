@@ -7,8 +7,9 @@ export default function MainContent({
   setEmailAlertEnabled,
   deleteItem,
   moveTask,
-  // Alert,
-  isEmail,
+  showAlertDialogue,
+  updateAlert,
+  isEmail
 }) {
   const tasksTodo = tasks.filter((task) => task.status === 'todo').map((task) => (
     <div key={task.id} className="task-container">
@@ -19,7 +20,8 @@ export default function MainContent({
         deleteItem={deleteItem}
         moveTask={moveTask}
         index={task.id}
-        // Alert = {Alert}
+        showAlertDialogue={showAlertDialogue}
+        updateAlert={updateAlert}
         isEmail = {isEmail}
       />{" "}
     </div>

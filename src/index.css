@@ -554,11 +554,6 @@ width: 1.7rem;
 height: 1.7rem;
 }
 
-.alert-box-message-container {
-color:oklch(100% 0 0) ;
-font-weight: 500;
-font-size: 1.3rem;
-}
 
 .alert-box-container {
   opacity: 0;

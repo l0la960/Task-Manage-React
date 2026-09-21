@@ -11,8 +11,9 @@ export default function UpdateForm({
   taskTitle,
   isEmailAlertEnabled,
   setEmailAlertEnabled,
-  // Alert, 
-  isEmail, 
+  showAlertDialogue,
+  updateAlert,
+  isEmail
 }) {
   const enableEmailAlert = () => {
     setEmailAlertEnabled(!isEmailAlertEnabled);
@@ -36,7 +37,8 @@ export default function UpdateForm({
   // }
   else {
   closeUpdateForm()
-  // Alert()
+  updateAlert('#509AF8' , 'Task Updated Successfully')
+  showAlertDialogue()
   }
   }
 

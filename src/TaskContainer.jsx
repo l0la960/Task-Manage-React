@@ -15,7 +15,8 @@ export default function TaskContainer({
   moveTask,
   index, 
   // we are passing id here
-  // Alert,
+  showAlertDialogue,
+  updateAlert,
   isEmailAlertEnabled,
   setEmailAlertEnabled,
   isEmail,
@@ -26,13 +27,12 @@ export default function TaskContainer({
 
   const openUpdateForm = () => {
     setUpdateFormOpened(true);
-    console.log(open);
   };
 
   const closeUpdateForm = () => {
     setUpdateFormOpened(false);
     setEmailAlertEnabled(false);
-    console.log(close);
+  
   };
 
 
@@ -78,7 +78,8 @@ const dueDateString = format(task.dueDate, 'do MMMM yyyy')
           taskTitle={task.title}
           isEmailAlertEnabled={isEmailAlertEnabled}
           setEmailAlertEnabled={setEmailAlertEnabled}
-          // Alert = {Alert}
+          showAlertDialogue={showAlertDialogue}
+          updateAlert={updateAlert}
           isEmail = {isEmail}
         />
       )}

@@ -56,7 +56,7 @@ export default function CreateTaskForm({
       document.getElementById("form-container-id").style.scrollbarColor = "";
       document.getElementById("form-container-id").style.scrollbarWidth = "thin";
     }
-  }, []);
+  });
 
   return (
     <>

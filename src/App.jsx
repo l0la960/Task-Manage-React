@@ -26,13 +26,11 @@ function App() {
 
   const openForm = () => {
     setFormOpened(true);
-    console.log(open);
   };
 
   const closeForm = () => {
     setFormOpened(false);
     setEmailAlertEnabled(false);
-    console.log(close);
   };
 
   //add to to list function and form validation on the button
@@ -80,6 +78,7 @@ function App() {
     } else {
       setTodolist((t) => [...t, taskItem]);
       closeForm();
+      updateAlert('#509AF8' , 'Task created Successfully')
       showAlertDialogue()
     }
   };
@@ -102,6 +101,8 @@ function App() {
 
   const deleteTodo = (id) => {
     setTodolist(todoList.filter((todo) => todo.id !== id));
+     updateAlert('#509AF8' , 'Task deleted Successfully')
+     showAlertDialogue()
   };
 
   // Display and hide alert
@@ -109,17 +110,22 @@ function App() {
   const alertRef = useRef(null);
 
   const showAlertDialogue = () => {
-    console.log("show", alertRef.current);
     alertRef.current.style.display = "block";
     setTimeout(() => {
       alertRef.current.style.display = "none";
     }, 2000);
   };
 
-  console.log(alertRef.current)
+
+  // const updateAlertState = () => {
+  //  const child = alertRef.current.querySeletor('.icon')
+  // if(child) {
+  // child.value = {alertCheck}
+  // }
+  // }
+
+ 
   
-
-
   return (
     <>
       <Header onClick={() => openForm()} />
@@ -129,7 +135,8 @@ function App() {
         moveTask={moveTask}
         isEmailAlertEnabled={isEmailAlertEnabled}
         setEmailAlertEnabled={setEmailAlertEnabled}
-        // Alert = {() => Alert()}
+        showAlertDialogue={showAlertDialogue}
+        updateAlert={updateAlert}
         isEmail={isEmail}
       />
       {isFormOpened && (
@@ -143,7 +150,6 @@ function App() {
       )}
       <Alert
         icon={alertCheck}
-        message="Task Created Successfully."
         ref={alertRef}
       />
     </>

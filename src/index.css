@@ -314,7 +314,7 @@ background-color: rgba(0, 0, 0, 0.414);
 
 @media screen and (min-width:320px) and (max-width:450px){
   .form-background, .update-form-background {
-padding: 10rem 0.5rem;
+padding: 7rem 1rem;
 }
 }
 
@@ -363,6 +363,7 @@ max-height: 80vh;
 overflow-y: scroll;
 scrollbar-color: "";
 scrollbar-width: thin;
+padding: 3rem;
 }
 }
 

@@ -52,9 +52,9 @@ const dueDateString = format(task.dueDate, 'do MMMM yyyy')
       <div className="task-container-date-time-btns-group">
         <div className="task-container-date-time">
           <div>
-            <img src={calendarIcon}></img>
+            <img src={calendarIcon} alt='calendar icon'></img>
           </div>
-        Due:{task.dueTime === '' ? <p>{dueDateString}</p> : <p>{dueDateString}, {task.dueTime}</p>} 
+        {task.dueTime === '' ? <p>Due: {dueDateString}</p> : <p>Due: {dueDateString}, {task.dueTime}</p>} 
         </div>
         <div className="task-container-btn-group">
           <DropDown

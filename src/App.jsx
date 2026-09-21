@@ -62,6 +62,7 @@ function App() {
       closeForm();
       updateAlert('#509AF8' , 'Task created Successfully')
       showAlertDialogue();
+       console.log(taskItem)
     } else if (
       isEmailAlertEnabled &&
       (email === "" || alertDate === "" || title === "" || dueDate === "")
@@ -78,6 +79,7 @@ function App() {
       closeForm();
       updateAlert('#509AF8' , 'Task created Successfully')
       showAlertDialogue()
+      console.log(taskItem)
     }
   };
 
